@@ -1,0 +1,8 @@
+# 環境変数ファイル
+.env
+
+# Node.js
+node_modules/
+
+# ログ
+*.log
