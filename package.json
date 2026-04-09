@@ -5,7 +5,8 @@
   "main": "bot/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bot/Discord/bot.js"
+    "start": "node bot/Discord/bot.js",
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "repository": {
     "type": "git",
