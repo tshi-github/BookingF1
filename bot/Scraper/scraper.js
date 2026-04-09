@@ -1,6 +1,8 @@
 // Scraper/scraper.js
+// Scraper/scraper.js
 require('dotenv').config();
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
+const chromium = require('@sparticuz/chromium');
 
 const LOGIN_ID = process.env.LOGIN_ID;
 const PASSWORD = process.env.PASSWORD;
@@ -38,10 +40,10 @@ function parseRequest(line) {
 // =============================
 async function checkAvailabilityList(requests, onResult) {
   const browser = await puppeteer.launch({
-    headless: false,
-    slowMo: 100,
-    args: ['--no-sandbox']
-  });
+    args: chromium.args,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
+  }); 
 
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
