@@ -64,3 +64,8 @@ client.on('messageCreate', async (message) => {
 });
 
 client.login(DISCORD_TOKEN);
+const http = require('http');
+const PORT = process.env.PORT || 4000;
+http.createServer((req, res) => res.end('ok')).listen(PORT, () => {
+  console.log(`Health check server listening on port ${PORT}`);
+});
