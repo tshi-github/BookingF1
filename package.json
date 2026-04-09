@@ -2,10 +2,10 @@
   "name": "bookingf1",
   "version": "1.0.0",
   "description": "",
-  "main": "scraper.js",
+  "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node scraper.js"
+    "start": "node bot/Discord/bot.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/tshi-github/BookingF1#readme",
   "dependencies": {
+    "discord.js": "^14.26.2",
     "dotenv": "^17.4.1",
     "puppeteer": "^24.40.0"
   }
