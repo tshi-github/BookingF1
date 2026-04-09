@@ -2,7 +2,7 @@
   "name": "bookingf1",
   "version": "1.0.0",
   "description": "",
-  "main": "bot.js",
+  "main": "bot/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node bot/Discord/bot.js"
