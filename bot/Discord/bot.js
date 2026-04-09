@@ -38,7 +38,15 @@ client.on('messageCreate', async (message) => {
   // 書式に合う行が1件もなければ無視
   if (requests.length === 0) return;
 
-  await message.reply(`🔍 ${requests.length}件チェックします...`);
+  const replyMessage = await message.reply(`🔍 ${requests.length}件チェックします`);
+
+  // アニメーション開始（プログレスバー）
+  const progressBars = ['・', '・・', '・・・', '・・・・', '・・・・・'];
+  let progressIndex = 0;
+  const animationInterval = setInterval(() => {
+    progressIndex = (progressIndex + 1) % progressBars.length;
+    replyMessage.edit(`🔍 ${requests.length}件チェックします ${progressBars[progressIndex]}`);
+  }, 300);
 
   // 1件ずつ処理してリアルタイムに送信
   await checkAvailabilityList(requests, async (originalLine, date, checkTime, result) => {
@@ -61,6 +69,10 @@ client.on('messageCreate', async (message) => {
 
     await message.channel.send(text);
   });
+
+  // アニメーション停止
+  clearInterval(animationInterval);
+  await replyMessage.edit(`✅ ${requests.length}件のチェックが完了しました`);
 });
 
 client.login(DISCORD_TOKEN);

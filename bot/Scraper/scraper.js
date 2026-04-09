@@ -58,11 +58,11 @@ async function checkAvailabilityList(requests, onResult) {
     // 会津大学の施設利用状況ページにアクセス（ログイン不要）
     await page.goto(
       'https://csweb.u-aizu.ac.jp/campusweb/campussquare.do?_flowId=KHW0001310-flow',
-      { waitUntil: 'networkidle2', timeout: 30000 }
+      { waitUntil: 'networkidle2', timeout: 10000 } //30000
     );
 
     // 少し待機（描画安定のため）
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 1000)); // 2000
 
     // フレーム取得（存在すれば）
     const targetFrame = page.frames().find(f =>
@@ -75,7 +75,7 @@ async function checkAvailabilityList(requests, onResult) {
         const formattedDate = formatDateWithDay(date);
 
         // 日付入力欄を待つ
-        await targetFrame.waitForSelector('#displayDateStr', { timeout: 15000 });
+        await targetFrame.waitForSelector('#displayDateStr', { timeout: 10000 }); // 15000
 
         // 日付をセット
         await targetFrame.evaluate((val) => {
@@ -87,12 +87,12 @@ async function checkAvailabilityList(requests, onResult) {
         // 表示ボタンを押す
         await targetFrame.waitForSelector(
           'input[type="submit"][value="表示"]',
-          { timeout: 15000 }
+          { timeout: 10000 } // 15000
         );
         await targetFrame.click('input[type="submit"][value="表示"]');
 
         // 読み込み待機
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        await new Promise(resolve => setTimeout(resolve, 1500)); // 3000
 
         // ページ内で空き状況を解析
         const result = await targetFrame.evaluate((checkTime) => {
