@@ -5,8 +5,7 @@
   "main": "bot/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bot/Discord/bot.js",
-    "postinstall": "npx puppeteer browsers install chrome"
+    "start": "node bot/Discord/bot.js"
   },
   "repository": {
     "type": "git",
@@ -20,10 +19,9 @@
   },
   "homepage": "https://github.com/tshi-github/BookingF1#readme",
   "dependencies": {
-    "@sparticuz/chromium": "^143.0.4",
+    "axios": "^1.9.0",
+    "cheerio": "^1.1.0",
     "discord.js": "^14.26.2",
-    "dotenv": "^17.4.1",
-    "puppeteer": "^24.40.0",
-    "puppeteer-core": "^24.40.0"
+    "dotenv": "^17.4.1"
   }
 }
