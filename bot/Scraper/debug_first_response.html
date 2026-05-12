@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+        <title>認証エラー</title>
+        <script language="JavaScript" type="text/javascript">
+            function doRedirect(){
+                var isWeb = true;
+                try {
+                    
+                        
+                            
+                            if(window == parent){
+                                
+                                if (top.location.href.indexOf('/campussquare.do?_flowId=USW0009100-flow') > -1){
+                                    
+                                    isWeb = true;
+                                } else {
+                                    isWeb = false;  
+                                }
+                            } else {
+                                
+                                if (top.location.href.indexOf('/campussquare.do') > -1){
+                                    
+                                    isWeb = true;
+                                } else {
+                                    isWeb = false;  
+                                }
+                            }
+                        
+                        
+                    
+                }catch(e){
+                    
+                    isWeb = !(true);
+                }
+                if (isWeb){
+                    document.forms["authorizationError"].action = "/campusweb/campussquare.do";
+                } else {
+                    document.forms["authorizationError"].action = "/campusweb/campusportal.do";
+                    
+                    var ua =navigator.userAgent;
+                    if (ua.indexOf("iPhone") > -1 || ua.indexOf("iPad") > -1 || ua.indexOf("iPod") > -1 || ua.indexOf("Android") > -1){
+                        // スマートデバイス
+                        document.forms["authorizationError"].action = "/campusweb/campussmart.do";
+                    }
+                }
+                document.forms["authorizationError"].target = "_parent";
+                document.forms["authorizationError"].submit();
+            }
+        </script>
+    </head>
+    <body onload="doRedirect();">
+        <form name="authorizationError" method="post" action="/campusweb/campussquare.do">
+            <input type="hidden" name="_flowId" value="authorization-error-flow">
+        </form>
+    </body>
+</html>
